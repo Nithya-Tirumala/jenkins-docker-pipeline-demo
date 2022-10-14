@@ -13,11 +13,12 @@ pipeline {
                 docker_creds = credentials('docker_creds')
             }
             steps {
-                sh('docker login -u $docker_creds_USR -p $docker_creds_PSW')
+                sh('docker login -u sainammi -p Docker123')
                 echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
                 echo 'pushed image to docker hub'
+                echo '$docker_creds_USR $docker_creds_PSW'
             }
         }
         stage('pull image from hub/registry') {
