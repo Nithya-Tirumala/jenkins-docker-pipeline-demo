@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'building docker image'
-                docker build -t sainammi/jenkins-demo-pipeline .
+                sh('docker build -t sainammi/jenkins-demo-pipeline .')
             }
         }
         stage('Publish to Hub/Registry') {
