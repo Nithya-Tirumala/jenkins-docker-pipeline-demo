@@ -9,9 +9,6 @@ pipeline {
             }
         }
         stage('Publish to Hub/Registry') {
-            environment {
-                SERVICE_CREDS = credentials('docker_creds')
-            }
             steps {
                 sh('docker login -u sainammi -p Docker123')
                 echo "successfully connected to Docker-Hub"
