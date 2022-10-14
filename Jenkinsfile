@@ -15,8 +15,8 @@ pipeline {
             steps {
                 echo "Service user is $SERVICE_CREDS_USR"
                 echo "Service password is $SERVICE_CREDS_PSW"
-                sh('curl -u $SERVICE_CREDS https://hub.docker.com/')
-                echo "successfully connected to github"
+                sh('docker login -u $SERVICE_CREDS_USR -p $SERVICE_CREDS_PSW ')
+                echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
                 echo 'pushed image to docker hub'
