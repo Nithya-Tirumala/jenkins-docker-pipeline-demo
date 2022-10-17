@@ -30,7 +30,10 @@ pipeline {
         }
         stage('start a container') {
             steps {
-                sh('/home/sai_nammi/container-exist.sh')
+                sh '''if [ $(docker ps | awk \'{print $NF}\' | grep sai-jenkins-web-server) = \'sai-jenkins-web-server\' ]; then
+                        docker stop "sai-jenkins-web-server"
+                        docker rm "sai-jenkins-web-server"
+                fi'''
                 sh('docker run -it -d -p 8081:80 --name sai-jenkins-web-server sainammi/jenkins-demo-pipeline')
                 sh('docker exec sai-jenkins-web-server service nginx start')
             }
