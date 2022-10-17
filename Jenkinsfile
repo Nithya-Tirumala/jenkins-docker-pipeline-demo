@@ -13,7 +13,6 @@ pipeline {
                 Docker_Creds = credentials('36022d3e-b27c-45df-8851-0ac968ced404')
             }
             steps {
-                echo 'username - $Docker_Creds_USR , password - $Docker_Creds_PSW'
                 sh('docker login -u $Docker_Creds_USR -p $Docker_Creds_PSW')
                 echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
@@ -31,6 +30,7 @@ pipeline {
         }
         stage('start a container') {
             steps {
+                sh('/home/sai_nammi/container-exist.sh')
                 sh('docker run -it -d -p 8081:80 --name sai-jenkins-web-server sainammi/jenkins-demo-pipeline')
                 sh('docker exec sai-jenkins-web-server service nginx start')
             }
