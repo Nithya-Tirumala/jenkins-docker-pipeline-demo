@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Publish to Hub/Registry') {
             environment {
-                Docker_Creds = credentials('Docker_Creds')
+                Docker_Creds = credentials('36022d3e-b27c-45df-8851-0ac968ced404')
             }
             steps {
                 echo 'username - $Docker_Creds_USR , password - $Docker_Creds_PSW'
