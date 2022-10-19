@@ -53,7 +53,7 @@ pipeline {
     post {
         always {
             step([$class: 'Mailer',
-              notifyEveryUnstableBuild: true,
+              notifyEveryUnstableBuild: false,
               recipients: 'nspkumar79@gmail.com'])
         }
     }
