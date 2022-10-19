@@ -16,11 +16,16 @@ pipeline {
                 Docker = credentials('Sai_Docker_Hub')
             }
             steps {
-                sh('docker login -u ${Docker_USR} -p ${Docker_PSW}')
+                sh('docker login -u ${Docker_USR} -p ${Docker_PS}')
                 echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
                 echo 'pushed image to docker hub'
+            }
+            post {
+                failure {
+                    echo "Build step Failed. Continue to the next step"'
+                }
             }
         }
         stage('pull image from hub/registry') {
