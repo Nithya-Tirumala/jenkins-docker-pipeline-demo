@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    options { skipStagesAfterUnstable() }
     parameters {
         string(name: 'Status', defaultValue: 'Successful', description: 'build status?')
     }
@@ -21,9 +22,6 @@ pipeline {
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
                 echo 'pushed image to docker hub'
-                catchError(buildResult: 'SUCCESS', stageResult: 'Failure') {
-                        sh "exit 1"
-                }
             }
             post {
                 failure {
