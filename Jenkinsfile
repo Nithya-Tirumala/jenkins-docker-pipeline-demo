@@ -25,7 +25,9 @@ pipeline {
             post {
                 failure {
                     echo "Build step Failed. Continue to the next step"
-                    sh "exit 1"
+                    catchError {
+                      sh "exit 1"
+                    }
                 }
             }
         }
