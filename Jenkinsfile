@@ -29,7 +29,7 @@ pipeline {
                 
             }
             post {
-                failure {
+                always {
                     echo "Build step Failed. Continue to the next step"  
                 }        
             }
