@@ -9,9 +9,6 @@ pipeline {
             }
         }
         stage('Publish to Hub/Registry') {
-            environment {
-                Docker_Creds = credentials('Sai_Docker_Hub')
-            }
             steps {
                 sh('docker login -u $Docker_Creds_USR -p $Docker_Creds_PSW')
                 echo "successfully connected to Docker-Hub"
