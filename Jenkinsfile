@@ -52,7 +52,6 @@ pipeline {
     }
     post {
         always {
-           echo "Build step failed"
            step([$class: 'Mailer',
                  notifyEveryUnstableBuild: false,
                  recipients: 'nspkumar79@gmail.com'])
