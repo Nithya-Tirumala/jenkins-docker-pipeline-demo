@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script{
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        sh('docker login -u ${Docker_USR} -p ${Docker_PS}')
+                        sh('docker login -u ${Docker_USR} -p ${Docker_PSW}')
                         echo "successfully connected to Docker-Hub"
                         echo 'publishing to Hub'
                         sh('docker push sainammi/jenkins-demo-pipeline')
@@ -29,14 +29,8 @@ pipeline {
                 
             }
             post {
-                unstable {
-                    echo "Build step Failed. Continue to the next step"  
-                }
                 failure {
                     echo "Build step failed"
-                }
-                unsuccessful {
-                    echo "failed"   
                 }
             }
         }
