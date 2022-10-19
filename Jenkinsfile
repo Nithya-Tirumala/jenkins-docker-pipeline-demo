@@ -31,7 +31,13 @@ pipeline {
             post {
                 unstable {
                     echo "Build step Failed. Continue to the next step"  
-                }        
+                }
+                failure {
+                    echo "Build step failed"
+                }
+                unsuccessful {
+                    echo "failed"   
+                }
             }
         }
         stage('pull image from hub/registry') {
