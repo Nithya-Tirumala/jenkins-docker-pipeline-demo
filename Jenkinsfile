@@ -32,8 +32,8 @@ pipeline {
                 unsuccessful {
                     echo "Build step failed"
                     step([$class: 'Mailer',
-                          notifyEveryUnstableBuild: true,
-                          recipients: emailextrecipients([culprits(), requestor()])])
+                          notifyEveryUnstableBuild: false,
+                          recipients: 'nspkumar79@gmail.com'])
                 }
             }
         }
