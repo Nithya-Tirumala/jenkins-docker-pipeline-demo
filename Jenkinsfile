@@ -29,7 +29,7 @@ pipeline {
                 
             }
             post {
-                unsuccessful {
+                unstable {
                     echo "Build step Failed. Continue to the next step"  
                 }        
             }
