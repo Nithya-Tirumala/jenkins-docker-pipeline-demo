@@ -28,14 +28,7 @@ pipeline {
                 }
                 
             }
-            post {
-                unsuccessful {
-                    echo "Build step failed"
-                    step([$class: 'Mailer',
-                          notifyEveryUnstableBuild: false,
-                          recipients: 'nspkumar79@gmail.com'])
-                }
-            }
+            
         }
         stage('pull image from hub/registry') {
             steps {
@@ -55,6 +48,14 @@ pipeline {
                 sh('docker exec sai-jenkins-web-server service nginx start')
                 echo "Build ${params.Status}"
             }
+        }
+    }
+    post {
+        unsuccessful {
+           echo "Build step failed"
+           step([$class: 'Mailer',
+                 notifyEveryUnstableBuild: false,
+                 recipients: 'nspkumar79@gmail.com'])
         }
     }
 }
