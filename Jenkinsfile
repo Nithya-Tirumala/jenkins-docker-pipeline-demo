@@ -21,15 +21,15 @@ pipeline {
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
                 echo 'pushed image to docker hub'
-            }    
-            post {
-                failure {
-                    echo "Build step Failed. Continue to the next step"
-                }
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
                         {
                             sh "exit 1"
                         }
+            }    
+            post {
+                failure {
+                    echo "Build step Failed. Continue to the next step"
+                }        
             }
         }
         stage('pull image from hub/registry') {
