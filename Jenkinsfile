@@ -31,6 +31,12 @@ pipeline {
             post {
                 unsuccessful {
                     echo "Build step failed"
+                    emailext(
+                      to: 'nspkumar79@gmail.com',
+                      subject: "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                      body: "details",
+                      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                    )
                 }
             }
         }
