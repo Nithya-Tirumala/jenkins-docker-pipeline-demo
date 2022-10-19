@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    options { skipStagesAfterUnstable() }
+    options { skipStagesAfterUnstable(false) }
     parameters {
         string(name: 'Status', defaultValue: 'Successful', description: 'build status?')
     }
