@@ -18,7 +18,7 @@ pipeline {
             
             steps {
                 script{
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    catchError(buildResult: curentBuild.result, stageResult: 'FAILURE') {
                         sh('docker login -u ${Docker_USR} -p ${Docker_PS}')
                         echo "successfully connected to Docker-Hub"
                         echo 'publishing to Hub'
@@ -29,7 +29,7 @@ pipeline {
                 
             }
             post {
-                success {
+                unstable {
                     echo "Build step Failed. Continue to the next step"  
                 }        
             }
