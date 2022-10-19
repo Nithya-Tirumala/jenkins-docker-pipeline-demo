@@ -17,7 +17,7 @@ pipeline {
                 Docker = credentials('Sai_Docker_Hub')
             }
             steps {
-                sh('docker login -u ${Docker_USR} -p ${Docker_PSW}')
+                sh('docker login -u ${Docker_USR} -p ${Docker_PS}')
                 echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
