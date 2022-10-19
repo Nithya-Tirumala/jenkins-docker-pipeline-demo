@@ -31,11 +31,9 @@ pipeline {
             post {
                 unsuccessful {
                     echo "Build step failed"
-                    emailext(
-                      to: 'nspkumar79@gmail.com',
-                      subject: "failed",
-                      body: "details"
-                    )
+                    step([$class: 'Mailer',
+                          notifyEveryUnstableBuild: true,
+                          recipients: emailextrecipients([culprits(), requestor()])])
                 }
             }
         }
