@@ -24,7 +24,7 @@ pipeline {
             }
             post {
                 failure {
-                    echo "Build step Failed. Continue to the next step"'
+                    echo "Build step Failed. Continue to the next step"
                 }
             }
         }
