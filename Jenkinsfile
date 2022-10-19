@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'Status', defaultValue: 'Successful', description: 'build status?')
+    }
 
     stages {
         stage('Build Docker Image') {
@@ -36,6 +39,7 @@ pipeline {
                 fi'''
                 sh('docker run -it -d -p 8081:80 --name sai-jenkins-web-server sainammi/jenkins-demo-pipeline')
                 sh('docker exec sai-jenkins-web-server service nginx start')
+                echo 'Build ${params.Status}'
             }
         }
     }
