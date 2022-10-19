@@ -10,7 +10,8 @@ pipeline {
         }
         stage('Publish to Hub/Registry') {
             steps {
-                sh('docker login -u $Docker_Creds_USR -p $Docker_Creds_PSW')
+                echo "${Docker_Creds}"
+                sh('docker login -u ${Docker_Creds_USR} -p ${Docker_Creds_PSW}')
                 echo "successfully connected to Docker-Hub"
                 echo 'publishing to Hub'
                 sh('docker push sainammi/jenkins-demo-pipeline')
