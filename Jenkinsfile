@@ -34,8 +34,7 @@ pipeline {
                     emailext(
                       to: 'nspkumar79@gmail.com',
                       subject: "failed",
-                      body: "details",
-                      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                      body: "details"
                     )
                 }
             }
