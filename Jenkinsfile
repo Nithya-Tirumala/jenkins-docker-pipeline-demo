@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script{
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                        sh('docker login -u ${Docker_USR} -p ${Docker_PSW}')
+                        sh('docker login -u ${Docker_USR} -p ${Docker_PS}')
                         echo "successfully connected to Docker-Hub"
                         echo 'publishing to Hub'
                         sh('docker push sainammi/jenkins-demo-pipeline')
@@ -53,7 +53,7 @@ pipeline {
     post {
         always {
             emailext body: "details: \n '${env.BUILD_URL}'",
-                subject: "Jenkins Job '${env.BUILD_TAG} ${env.JOB} ${currentBuild.result}'",
+                subject: "Jenkins Job '${env.BUILD_TAG} ${currentBuild.result}'",
                      to: 'nspkumar79@gmail.com',
                      attachLog: true
         }
