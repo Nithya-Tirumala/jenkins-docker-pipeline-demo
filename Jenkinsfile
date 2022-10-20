@@ -52,10 +52,11 @@ pipeline {
     }
     post {
         always {
-            step([$class: 'Mailer',
-              notifyEveryUnstableBuild: false,
-              triggers: always,    
-              recipients: 'nspkumar79@gmail.com'])
+            emailext(
+              to: 'nspkumar79@gmail.com',
+              subject: '$PROJECT_DEFAULT_SUBJECT',
+              body: "$PROJECT_DEFAULT_CONTENT"
+            )
         }
     }
 }
