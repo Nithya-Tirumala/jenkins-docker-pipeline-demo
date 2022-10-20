@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Status', defaultValue: 'Successful', description: 'build status?')
+        string(name: 'Status', defaultValue: 'finished', description: 'build status?')
     }
 
     stages {
@@ -52,8 +52,8 @@ pipeline {
     }
     post {
         always {
-            emailext body: "details",
-                     subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            emailext body: "details: \n '${env.BUILD_URL}'",
+                subject: "Jenkins Job '${env.BUILD_TAG} ${env.JOB} ${currentBuild.result}'",
                      to: 'nspkumar79@gmail.com',
                      attachLog: true
         }
