@@ -52,11 +52,9 @@ pipeline {
     }
     post {
         always {
-            emailext(
-              to: 'nspkumar79@gmail.com',
-              subject: '$PROJECT_DEFAULT_SUBJECT',
-              body: "$PROJECT_DEFAULT_CONTENT"
-            )
+            emailext body: '$PROJECT_DEFAULT_CONTENT',
+                     subject: '$PROJECT_DEFAULT_SUBJECT',
+                     to: 'nspkumar79@gmail.com'
         }
     }
 }
