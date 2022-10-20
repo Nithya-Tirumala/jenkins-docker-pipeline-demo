@@ -54,7 +54,7 @@ pipeline {
         always {
             emailext body: "details",
                      subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                     to: 'nspkumar79@gmail.com'
+                     to: 'nspkumar79@gmail.com',
                      attachLog: true
         }
     }
