@@ -54,7 +54,7 @@ pipeline {
         always {
             emailext body: "details: \n '${env.BUILD_URL}'",
                 subject: "Jenkins Job '${env.BUILD_TAG} ${currentBuild.result}'",
-                     to: 'nspkumar79@gmail.com',
+                     to: 'sai_nammi@persistent.com',
                      attachLog: true
         }
     }
